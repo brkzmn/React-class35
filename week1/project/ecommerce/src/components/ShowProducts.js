@@ -3,16 +3,23 @@ import allProducts from "../fake-data/all-products";
 import Product from "./Product";
 
 function ShowProducts({ category }) {
-  if (category === "All") {
-    return (
-      <div>
-        {allProducts.map((eachProduct) => {
-          return <Product productInfo={eachProduct} />;
-        })}
-      </div>
-    );
+  let productList;
+  const productCategory = category.slice(6);
+  if (productCategory === "") {
+    productList = allProducts;
+  } else {
+    productList = allProducts.filter((product) => {
+      return product.category === productCategory;
+    });
   }
-  return;
+
+  return (
+    <div>
+      {productList.map((eachProduct) => {
+        return <Product productInfo={eachProduct} />;
+      })}
+    </div>
+  );
 }
 
 export default ShowProducts;

@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <h1>Products</h1>
       <Navbar category={category} setCategory={setCategory} />
-      {console.log(category)}
       <ShowProducts category={category} />
     </div>
   );
