@@ -6,17 +6,25 @@ function Navbar({ setCategory }) {
     setCategory(category);
   };
 
+  const [activeIndex, setActiveIndex] = React.useState(null);
+
+  const handleOnClick = (index) => {
+    setActiveIndex(index);
+  };
+
   return (
     <div className="Navbar">
-      {allCategories.map((category, index) => {
+      {allCategories.map((eachCategory, index) => {
         return (
           <button
             key={index}
             onClick={() => {
-              handleCategory(category);
+              handleCategory(eachCategory);
+              handleOnClick(index);
             }}
+            className={activeIndex === index ? "selected" : "not-selected"}
           >
-            {category}
+            {eachCategory}
           </button>
         );
       })}

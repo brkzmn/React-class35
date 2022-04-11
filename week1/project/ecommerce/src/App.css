@@ -44,3 +44,9 @@
 .not-selected {
   background-color: rgb(239, 239, 239);
 }
+.productCard {
+  width: 40%;
+}
+img {
+  width: 100%;
+}
