@@ -1,34 +1,24 @@
 import React, { useState } from "react";
 import allCategories from "../fake-data/all-categories";
+import Button from "./Button";
 
 function Navbar({ setCategory }) {
-  const handleCategory = (category) => {
-    setCategory(category);
-  };
-
-  const [activeIndex, setActiveIndex] = React.useState(null);
-
-  const handleOnClick = (index) => {
-    setActiveIndex(index);
-  };
-
+  const [activeIndex, setActiveIndex] = useState(null);
   return (
-    <div className="Navbar">
+    <nav>
       {allCategories.map((eachCategory, index) => {
         return (
-          <button
+          <Button
             key={index}
-            onClick={() => {
-              handleCategory(eachCategory);
-              handleOnClick(index);
-            }}
-            className={activeIndex === index ? "selected" : "not-selected"}
-          >
-            {eachCategory}
-          </button>
+            eachCategory={eachCategory}
+            index={index}
+            setCategory={setCategory}
+            setActiveIndex={setActiveIndex}
+            activeIndex={activeIndex}
+          />
         );
       })}
-    </div>
+    </nav>
   );
 }
 
