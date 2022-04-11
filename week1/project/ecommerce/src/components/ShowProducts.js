@@ -14,7 +14,7 @@ function ShowProducts({ category }) {
   }
 
   return (
-    <div>
+    <div className="products-container">
       {productList.map((eachProduct) => {
         return <Product productInfo={eachProduct} />;
       })}

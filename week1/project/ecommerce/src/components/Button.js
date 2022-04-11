@@ -10,7 +10,7 @@ function Button({
   return (
     <button
       key={index}
-      className={activeIndex === index ? "selected" : "not-selected"}
+      className={`navbar-item ${activeIndex === index ? "active" : null}`}
       onClick={() => {
         setCategory(eachCategory);
         setActiveIndex(index);

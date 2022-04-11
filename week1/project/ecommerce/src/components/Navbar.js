@@ -5,7 +5,7 @@ import Button from "./Button";
 function Navbar({ setCategory }) {
   const [activeIndex, setActiveIndex] = useState(null);
   return (
-    <nav>
+    <nav className="navbar">
       {allCategories.map((eachCategory, index) => {
         return (
           <Button
