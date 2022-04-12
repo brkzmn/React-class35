@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import ShowProducts from "./components/ShowProducts";
+import Products from "./components/Products";
 
 function App() {
   const [category, setCategory] = useState("All");
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <h1>Products</h1>
       <Navbar category={category} setCategory={setCategory} />
-      <ShowProducts category={category} />
+      <Products category={category} />
     </div>
   );
 }

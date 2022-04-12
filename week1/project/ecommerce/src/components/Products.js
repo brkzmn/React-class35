@@ -2,7 +2,7 @@ import React from "react";
 import allProducts from "../fake-data/all-products";
 import Product from "./Product";
 
-function ShowProducts({ category }) {
+function Products({ category }) {
   let productList;
   const productCategory = category.slice(6);
   if (productCategory === "") {
@@ -22,4 +22,4 @@ function ShowProducts({ category }) {
   );
 }
 
-export default ShowProducts;
+export default Products;
