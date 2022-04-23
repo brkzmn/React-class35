@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 
 function App() {
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState(null);
   return (
     <div className="App">
       <h1>Products</h1>

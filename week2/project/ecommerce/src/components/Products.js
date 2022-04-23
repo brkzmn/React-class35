@@ -1,20 +1,47 @@
-import React from "react";
-import allProducts from "../fake-data/all-products";
+import React, { useEffect, useState } from "react";
+
 import Product from "./Product";
 
 function Products({ category }) {
-  let productList;
-  const productCategory = category.slice(6);
-  if (productCategory === "") {
-    productList = allProducts;
-  } else {
-    productList = allProducts.filter((product) => {
-      return product.category === productCategory;
-    });
+  const [productList, setProductList] = useState(null);
+
+  const getAllProducts = async () => {
+    try {
+      const response = await fetch("https://fakestoreapi.com/products");
+      const data = await response.json();
+      setProductList(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
+  const getProducts = async () => {
+    try {
+      const response = await fetch(
+        `https://fakestoreapi.com/products/category/${category}`
+      );
+      const data = await response.json();
+      setProductList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, [category]);
+
+  if (productList == null) {
+    return null;
   }
 
   return (
-    <div className="products-container">
+    <div>
       {productList.map((eachProduct) => {
         return <Product productInfo={eachProduct} />;
       })}
