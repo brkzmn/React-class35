@@ -6,6 +6,7 @@ function Button({
   setCategory,
   activeIndex,
   setActiveIndex,
+  setIsLoading,
 }) {
   return (
     <button
@@ -14,6 +15,7 @@ function Button({
       onClick={() => {
         setCategory(eachCategory);
         setActiveIndex(index);
+        setIsLoading(true);
       }}
     >
       {eachCategory}

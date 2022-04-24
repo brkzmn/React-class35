@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import Button from "./Button";
 
-function Navbar({ setCategory }) {
+function Navbar({ setCategory, setIsLoading }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
 
@@ -33,6 +33,7 @@ function Navbar({ setCategory }) {
             setCategory={setCategory}
             setActiveIndex={setActiveIndex}
             activeIndex={activeIndex}
+            setIsLoading={setIsLoading}
           />
         );
       })}
