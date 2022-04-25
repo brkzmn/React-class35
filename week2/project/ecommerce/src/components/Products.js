@@ -55,8 +55,8 @@ function Products({ category, setIsLoading, isLoading }) {
       {isLoading === true && <div>LOADING</div>}
 
       {isLoading === false &&
-        productList.map((eachProduct) => {
-          return <Product productInfo={eachProduct} />;
+        productList.map((eachProduct, index) => {
+          return <Product key={index + 1} productInfo={eachProduct} />;
         })}
     </div>
   );
