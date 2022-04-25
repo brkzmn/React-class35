@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import Product from "./Product";
+import Loading from "./Loading";
 
-function Products({ category, setIsLoading, isLoading }) {
+function Products({
+  category,
+  isLoadingFirst,
+  isLoadingSecond,
+  setIsLoadingFirst,
+  setIsLoadingSecond,
+}) {
   const [productList, setProductList] = useState(null);
 
   const getAllProducts = async () => {
+    setIsLoadingFirst(true);
     try {
       const response = await fetch("https://fakestoreapi.com/products");
       const data = await response.json();
       setProductList(data);
-
-      console.log(isLoading, "isloadinggg");
-      console.log(productList, "first Effect");
+      setIsLoadingFirst(false);
+      console.log("get all products");
+      console.log("first fetch", isLoadingFirst);
     } catch (error) {
       console.log(error);
     }
@@ -21,22 +29,24 @@ function Products({ category, setIsLoading, isLoading }) {
   useEffect(() => {
     getAllProducts();
 
-    setTimeout(() => {
-      console.log("setISLOADING ..2000");
-      setIsLoading(false);
-    }, 2000);
+    return () => {
+      console.log("first effect stopped");
+    };
   }, []);
 
   const getProducts = async () => {
+    console.log(category);
+
+    setIsLoadingSecond(true);
     try {
       const response = await fetch(
         `https://fakestoreapi.com/products/category/${category}`
       );
       const data = await response.json();
       setProductList(data);
-      setIsLoading(false);
-      console.log(isLoading, "isLoading inside sub category");
-      console.log(productList, "second Effect");
+
+      console.log("second fetch", isLoadingSecond);
+      setIsLoadingSecond(false);
     } catch (error) {
       console.log(error);
     }
@@ -44,6 +54,10 @@ function Products({ category, setIsLoading, isLoading }) {
 
   useEffect(() => {
     getProducts();
+
+    return () => {
+      console.log("stopped");
+    };
   }, [category]);
 
   if (productList == null) {
@@ -51,14 +65,15 @@ function Products({ category, setIsLoading, isLoading }) {
   }
 
   return (
-    <div>
-      {isLoading === true && <div>LOADING</div>}
+    <ul className="products-container">
+      {(isLoadingFirst === true || isLoadingSecond === true) && <Loading />}
 
-      {isLoading === false &&
+      {isLoadingFirst === false &&
+        isLoadingSecond === false &&
         productList.map((eachProduct, index) => {
           return <Product key={index + 1} productInfo={eachProduct} />;
         })}
-    </div>
+    </ul>
   );
 }
 

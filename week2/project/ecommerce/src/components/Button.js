@@ -15,7 +15,7 @@ function Button({
       onClick={() => {
         setCategory(eachCategory);
         setActiveIndex(index);
-        setIsLoading(true);
+        // setIsLoading(true);
       }}
     >
       {eachCategory}

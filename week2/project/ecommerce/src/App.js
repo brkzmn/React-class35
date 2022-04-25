@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import "./App.css";
 
 import HomePage from "./pages/HomePage";
-import ProductDetails from "./components/ProductDetails";
+// import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./pages/ProductDetails";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [category, setCategory] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingFirst, setIsLoadingFirst] = useState(false);
+  const [isLoadingSecond, setIsLoadingSecond] = useState(false);
+
   return (
     <Router>
       <Routes>
@@ -18,8 +21,10 @@ function App() {
             <HomePage
               category={category}
               setCategory={setCategory}
-              isLoading={isLoading}
-              setIsLoading={setIsLoading}
+              isLoadingFirst={isLoadingFirst}
+              setIsLoadingFirst={setIsLoadingFirst}
+              isLoadingSecond={isLoadingSecond}
+              setIsLoadingSecond={setIsLoadingSecond}
             />
           }
         />
