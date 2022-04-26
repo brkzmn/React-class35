@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 import Product from "./Product";
 import Loading from "./Loading";
@@ -11,16 +11,19 @@ function Products({
   setIsLoadingSecond,
 }) {
   const [productList, setProductList] = useState(null);
+  const [error, setError] = useState(null);
 
   const getAllProducts = async () => {
     setIsLoadingFirst(true);
     try {
       const response = await fetch("https://fakestoreapi.com/products");
+      if (!response.ok) throw "HTTP Error";
       const data = await response.json();
       setProductList(data);
       setIsLoadingFirst(false);
     } catch (error) {
-      console.log(error);
+      setIsLoadingFirst(false);
+      setError(error);
     }
   };
 
@@ -29,32 +32,30 @@ function Products({
   }, []);
 
   const getProducts = async () => {
-    console.log(category);
-
     setIsLoadingSecond(true);
+
     try {
       const response = await fetch(
         `https://fakestoreapi.com/products/category/${category}`
       );
+      if (!response.ok) throw "HTTP Error";
       const data = await response.json();
       setProductList(data);
-
       setIsLoadingSecond(false);
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
 
   useEffect(() => {
     getProducts();
-
-    return () => {
-      console.log("stopped");
-    };
   }, [category]);
 
   if (productList == null) {
     return null;
+  }
+  if (error != null) {
+    return <div>{error.message}</div>;
   }
 
   return (

@@ -5,23 +5,31 @@ import Loading from "../components/Loading";
 const ProductDetailsPage = () => {
   const [details, setDetails] = useState({});
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
-
+  const [error, setError] = useState(null);
   const { id } = useParams();
 
   const getDetails = async () => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+      if (!response.ok) throw "HTTP error";
       const data = await response.json();
       setDetails(data);
       setIsLoadingDetails(false);
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
 
   useEffect(() => {
     getDetails();
   }, []);
+
+  if (error != null) {
+    return <div>{error.message}</div>;
+  }
+  if (details == null) {
+    return <div>PRODUCT NOT FOUND</div>;
+  }
 
   return (
     <div className="product-details">

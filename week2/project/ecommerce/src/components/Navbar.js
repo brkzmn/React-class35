@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-
 import Button from "./Button";
 
 function Navbar({ setCategory, setIsLoading }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
+  const [error, setError] = useState(null);
 
   const getCategories = async () => {
     try {
@@ -13,15 +13,20 @@ function Navbar({ setCategory, setIsLoading }) {
       );
       if (!response.ok) throw "HTTP error";
       const data = await response.json();
-
       setAllCategories(data);
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
+
   useEffect(() => {
     getCategories();
   }, []);
+
+  if (error != null) {
+    return <div> {error.message}</div>;
+  }
+
   return (
     <nav className="navbar">
       {allCategories.map((eachCategory, index) => {
