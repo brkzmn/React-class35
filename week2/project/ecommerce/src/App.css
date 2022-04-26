@@ -64,19 +64,17 @@ h1 {
 
 .product-details-container {
   display: flex;
+  flex-direction: column-reverse;
 }
 .product-image-container {
-  width: 50%;
+  width: 100%;
   display: flex;
 }
 .product-details-description {
-  width: 50%;
+  width: 90%;
   margin: auto;
 }
 
-/* .product-image-container img {
-  max-height: 80vh;
-} */
 /*-------loading------*/
 .loading-container {
   display: flex;
@@ -172,6 +170,18 @@ h1 {
 @media (min-width: 600px) {
   .product-card {
     width: calc(50% - 16px);
+  }
+  .product-details-container {
+    display: flex;
+    flex-direction: inherit;
+  }
+  .product-image-container {
+    width: 50%;
+    display: flex;
+  }
+  .product-details-description {
+    width: 50%;
+    margin: auto;
   }
 }
 
