@@ -19,8 +19,6 @@ function Products({
       const data = await response.json();
       setProductList(data);
       setIsLoadingFirst(false);
-      console.log("get all products");
-      console.log("first fetch", isLoadingFirst);
     } catch (error) {
       console.log(error);
     }
@@ -28,10 +26,6 @@ function Products({
 
   useEffect(() => {
     getAllProducts();
-
-    return () => {
-      console.log("first effect stopped");
-    };
   }, []);
 
   const getProducts = async () => {
@@ -45,7 +39,6 @@ function Products({
       const data = await response.json();
       setProductList(data);
 
-      console.log("second fetch", isLoadingSecond);
       setIsLoadingSecond(false);
     } catch (error) {
       console.log(error);
