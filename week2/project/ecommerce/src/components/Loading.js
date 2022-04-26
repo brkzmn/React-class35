@@ -2,7 +2,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div>
+    <div className="loading-container">
       <div className="lds-roller">
         <div></div>
         <div></div>

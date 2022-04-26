@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 
-const ProductDetails = () => {
+const ProductDetailsPage = () => {
   const [details, setDetails] = useState({});
   const [isLoadingDetails, setIsLoadingDetails] = useState(true);
 
@@ -10,7 +10,6 @@ const ProductDetails = () => {
 
   const getDetails = async () => {
     try {
-      console.log(id);
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       const data = await response.json();
       setDetails(data);
@@ -25,18 +24,27 @@ const ProductDetails = () => {
   }, []);
 
   return (
-    <div>
+    <div className="product-details">
       {isLoadingDetails === true && <Loading />}
       {isLoadingDetails === false && (
         <div>
-          <h1>ProductDetails</h1>
-          <span className="product-title">{details.title}</span>
-          <img src={details.image} alt={details.title} />
-          <p>{details.description}</p>
+          <div className="details-title-container">
+            <h1 className="details-title">{details.title}</h1>
+          </div>
+          <div className="product-details-container">
+            <p className="product-details-description">{details.description}</p>
+            <div className="product-image-container">
+              <img
+                className="product-image"
+                src={details.image}
+                alt={details.title}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
 };
 
-export default ProductDetails;
+export default ProductDetailsPage;
