@@ -13,7 +13,7 @@ const FavouriteButton = ({ id }) => {
         console.log(id);
       }}
     >
-      <img src={heartSelected} alt="heart-svg" />
+      <img src={heartSelected} alt="heart" />
     </div>
   );
 };
