@@ -5,6 +5,7 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import { FavouritesProvider } from "./context/FavouritesContext";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import FavouritesPage from "./pages/FavouritesPage";
 
 function App() {
   const [category, setCategory] = useState(null);
@@ -29,6 +30,7 @@ function App() {
             }
           />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/favourites" element={<FavouritesPage />} />
         </Routes>
       </Router>
     </FavouritesProvider>

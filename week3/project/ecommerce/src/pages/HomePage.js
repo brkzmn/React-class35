@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
+import TopNavbar from "../components/TopNavbar";
 
 const HomePage = ({
   category,
@@ -12,7 +14,7 @@ const HomePage = ({
 }) => {
   return (
     <div className="App">
-      <h1>Products</h1>
+      <TopNavbar header={"Products"} />
       <Navbar
         category={category}
         setCategory={setCategory}

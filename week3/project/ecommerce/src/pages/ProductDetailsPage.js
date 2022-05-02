@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
+import { Link } from "react-router-dom";
+import FavouriteButton from "../components/FavouriteButton";
+import TopNavbar from "../components/TopNavbar";
 
 const ProductDetailsPage = () => {
   const [details, setDetails] = useState({});
@@ -13,6 +16,7 @@ const ProductDetailsPage = () => {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       if (!response.ok) throw "HTTP error";
       const data = await response.json();
+
       setDetails(data);
       setIsLoadingDetails(false);
     } catch (error) {
@@ -33,9 +37,11 @@ const ProductDetailsPage = () => {
 
   return (
     <div className="product-details">
+      <TopNavbar header={"Product Details"} />
       {isLoadingDetails === true && <Loading />}
       {isLoadingDetails === false && (
         <div>
+          <FavouriteButton id={details.id} />
           <div className="details-title-container">
             <h1 className="details-title">{details.title}</h1>
           </div>

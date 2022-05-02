@@ -4,11 +4,11 @@ export const FavouritesContext = createContext();
 
 export const FavouritesProvider = (props) => {
   const [favouritesProducts, setFavouritesProducts] = useState([]);
-  console.log(favouritesProducts, "context");
+  // console.log(favouritesProducts, "context");
 
   const setFavouriteIds = (id) => {
-    console.log(id);
-    console.log("set function ");
+    // console.log(id);
+    // console.log("set function ");
     let ids = [...favouritesProducts];
 
     if (!ids.includes(id)) {
@@ -34,7 +34,7 @@ export const FavouritesProvider = (props) => {
 
     return;
   };
-  console.log("context...");
+  // console.log("context...");
   const favourites = {
     setFavouritesProducts,
     favouritesProducts,
