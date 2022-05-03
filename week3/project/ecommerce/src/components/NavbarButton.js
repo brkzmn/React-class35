@@ -18,7 +18,7 @@ import { CategoriesContext } from "../context/CategoriesContext";
 //   );
 // }
 
-function NavbarButton({ eachCategory, index, activeIndex, setActiveIndex }) {
+function NavbarButton({ eachCategory }) {
   const { category, setCategory } = useContext(CategoriesContext);
 
   return (
@@ -26,7 +26,6 @@ function NavbarButton({ eachCategory, index, activeIndex, setActiveIndex }) {
       className={`navbar-item ${category === eachCategory ? "active" : null}`}
       onClick={() => {
         setCategory(eachCategory);
-        setActiveIndex(index);
       }}
     >
       {eachCategory}
