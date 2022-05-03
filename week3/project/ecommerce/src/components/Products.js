@@ -4,10 +4,10 @@ import ProductCard from "./ProductCard";
 import Loading from "./Loading";
 import useFetch from "../useFetch";
 
-function Products({}) {
+const Products = () => {
   const { category } = useContext(CategoriesContext);
   let url;
-  console.log(category);
+  console.log(category, "category in products");
   if (category === "all") {
     url = "https://fakestoreapi.com/products";
   } else {
@@ -27,6 +27,6 @@ function Products({}) {
         })}
     </ul>
   );
-}
+};
 
 export default Products;

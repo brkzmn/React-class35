@@ -3,21 +3,21 @@ import { useState, createContext } from "react";
 export const FavouritesContext = createContext();
 
 export const FavouritesProvider = (props) => {
-  const [favouritesProducts, setFavouritesProducts] = useState([]);
+  const [favouriteProducts, setFavouriteProducts] = useState([]);
 
   const setFavouriteIds = (id) => {
-    let ids = [...favouritesProducts];
+    let ids = [...favouriteProducts];
 
     if (!ids.includes(id)) {
       ids.push(id);
-      setFavouritesProducts(ids);
+      setFavouriteProducts(ids);
       return;
     }
     if (ids.includes(id)) {
       ids = ids.filter((favouriteId) => {
         return favouriteId !== id;
       });
-      setFavouritesProducts(ids);
+      setFavouriteProducts(ids);
       return;
     }
 
@@ -25,8 +25,8 @@ export const FavouritesProvider = (props) => {
   };
 
   const favourites = {
-    setFavouritesProducts,
-    favouritesProducts,
+    setFavouriteProducts,
+    favouriteProducts,
     setFavouriteIds,
   };
 

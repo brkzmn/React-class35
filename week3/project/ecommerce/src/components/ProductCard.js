@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import FavouriteButton from "./FavouriteButton";
 
@@ -12,8 +12,6 @@ function ProductCard({ productInfo }) {
             src={productInfo.image}
             alt={productInfo.title}
           />
-          {}
-
           <span className="product-title">{productInfo.title}</span>
         </div>
       </Link>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "./Button";
+import NavbarButton from "./NavbarButton";
 import useFetch from "../useFetch";
 import Loading from "./Loading";
 
@@ -8,6 +8,7 @@ function Navbar() {
     "https://fakestoreapi.com/products/categories"
   );
   const [activeIndex, setActiveIndex] = useState(null);
+  console.log("navbar re-rendered");
 
   return (
     <nav className="navbar">
@@ -18,8 +19,8 @@ function Navbar() {
           data !== null &&
           data.map((eachCategory, index) => {
             return (
-              <Button
-                key={index}
+              <NavbarButton
+                key={eachCategory}
                 eachCategory={eachCategory}
                 index={index}
                 setActiveIndex={setActiveIndex}
