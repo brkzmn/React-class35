@@ -13,6 +13,7 @@ export const FavouritesProvider = (props) => {
       setFavouriteProducts(ids);
       return;
     }
+
     if (ids.includes(id)) {
       ids = ids.filter((favouriteId) => {
         return favouriteId !== id;

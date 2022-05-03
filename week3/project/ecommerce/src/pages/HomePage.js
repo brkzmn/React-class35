@@ -6,7 +6,7 @@ import { CategoriesContext } from "../context/CategoriesContext";
 
 const HomePage = () => {
   const [allCategories, setAllCategories] = useState([]);
-  const { category, setCategory } = useContext(CategoriesContext);
+  const { category } = useContext(CategoriesContext);
   console.log(category, "category in HomePage");
 
   return (

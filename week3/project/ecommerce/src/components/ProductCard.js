@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FavouriteButton from "./FavouriteButton";
 
-function ProductCard({ productInfo }) {
+const ProductCard = ({ productInfo }) => {
   return (
     <li className="product-card">
       <Link to={`/product/${productInfo.id}`}>
@@ -18,6 +18,6 @@ function ProductCard({ productInfo }) {
       <FavouriteButton id={productInfo.id} />
     </li>
   );
-}
+};
 
 export default ProductCard;

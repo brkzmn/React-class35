@@ -7,7 +7,7 @@ import useFetch from "../useFetch";
 const Products = () => {
   const { category } = useContext(CategoriesContext);
   let url;
-  console.log(category, "category in products");
+
   if (category === "all") {
     url = "https://fakestoreapi.com/products";
   } else {

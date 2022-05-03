@@ -6,15 +6,15 @@ import Loading from "../components/Loading";
 import TopNavbar from "../components/TopNavbar";
 const FavouritesPage = () => {
   const { favouriteProducts } = useContext(FavouritesContext);
-
   const [productList, setProductList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const getProducts = async (id) => {
     if (isLoading === false) {
       setIsLoading(true);
     }
+
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       if (!response.ok) throw "HTTP Error";
@@ -34,10 +34,6 @@ const FavouritesPage = () => {
       getProducts(favouriteId);
     });
   }, [favouriteProducts]);
-
-  // if (productList.length === 0) {
-  //   return null;
-  // }
 
   return (
     <div>

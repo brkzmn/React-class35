@@ -3,12 +3,10 @@ import NavbarButton from "./NavbarButton";
 import useFetch from "../useFetch";
 import Loading from "./Loading";
 
-function Navbar() {
+const Navbar = () => {
   const { data, error, isLoading } = useFetch(
     "https://fakestoreapi.com/products/categories"
   );
-
-  console.log("navbar re-rendered");
 
   return (
     <nav className="navbar">
@@ -25,6 +23,6 @@ function Navbar() {
       </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;
