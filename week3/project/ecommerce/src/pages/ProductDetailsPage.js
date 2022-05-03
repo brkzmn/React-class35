@@ -1,57 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
-import { Link } from "react-router-dom";
 import FavouriteButton from "../components/FavouriteButton";
 import TopNavbar from "../components/TopNavbar";
+import useFetch from "../useFetch";
 
 const ProductDetailsPage = () => {
-  const [details, setDetails] = useState({});
-  const [isLoadingDetails, setIsLoadingDetails] = useState(true);
-  const [error, setError] = useState(null);
   const { id } = useParams();
-
-  const getDetails = async () => {
-    try {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      if (!response.ok) throw "HTTP error";
-      const data = await response.json();
-
-      setDetails(data);
-      setIsLoadingDetails(false);
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  useEffect(() => {
-    getDetails();
-  }, []);
-
-  if (error != null) {
-    return <div>{error.message}</div>;
-  }
-  if (details == null) {
-    return <div>PRODUCT NOT FOUND</div>;
-  }
+  const url = `https://fakestoreapi.com/products/${id}`;
+  const { data, isLoading, error } = useFetch(url);
 
   return (
-    <div className="product-details">
+    <div>
       <TopNavbar header={"Product Details"} />
-      {isLoadingDetails === true && <Loading />}
-      {isLoadingDetails === false && (
-        <div>
-          <FavouriteButton id={details.id} />
+      {isLoading === true && <Loading />}
+      {error !== null && <div>{error}</div>}
+      {isLoading === false && (
+        <div className="product-details">
           <div className="details-title-container">
-            <h1 className="details-title">{details.title}</h1>
+            <h2 className="details-title">{data.title}</h2>
           </div>
           <div className="product-details-container">
-            <p className="product-details-description">{details.description}</p>
+            <FavouriteButton id={data.id} />
+            <p className="product-details-description">{data.description}</p>
             <div className="product-image-container">
               <img
                 className="product-image"
-                src={details.image}
-                alt={details.title}
+                src={data.image}
+                alt={data.title}
               />
             </div>
           </div>

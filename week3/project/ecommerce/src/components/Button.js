@@ -5,7 +5,7 @@ function Button({ eachCategory, index, activeIndex, setActiveIndex }) {
   const { setCategory } = useContext(CategoriesContext);
 
   return (
-    <button
+    <li
       key={index}
       className={`navbar-item ${activeIndex === index ? "active" : null}`}
       onClick={() => {
@@ -14,7 +14,7 @@ function Button({ eachCategory, index, activeIndex, setActiveIndex }) {
       }}
     >
       {eachCategory}
-    </button>
+    </li>
   );
 }
 

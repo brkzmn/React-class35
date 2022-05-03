@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import TopNavbar from "../components/TopNavbar";
 
-const HomePage = ({}) => {
+const HomePage = () => {
   const [allCategories, setAllCategories] = useState([]);
 
   return (

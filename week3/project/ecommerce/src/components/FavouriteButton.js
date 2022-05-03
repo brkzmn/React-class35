@@ -14,7 +14,11 @@ const FavouriteButton = ({ id }) => {
         setFavouriteIds(id);
       }}
     >
-      <img src={!isFavourite ? heart : heartSelected} alt="heart" />
+      <img
+        className="favourite-icon"
+        src={!isFavourite ? heart : heartSelected}
+        alt="heart"
+      />
     </div>
   );
 };

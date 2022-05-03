@@ -11,21 +11,23 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {isLoading === true && <Loading />}
-      {error !== null && <div>{error}</div>}
-      {isLoading === false &&
-        data !== null &&
-        data.map((eachCategory, index) => {
-          return (
-            <Button
-              key={index}
-              eachCategory={eachCategory}
-              index={index}
-              setActiveIndex={setActiveIndex}
-              activeIndex={activeIndex}
-            />
-          );
-        })}
+      <ul>
+        {isLoading === true && <Loading />}
+        {error !== null && <div>{error}</div>}
+        {isLoading === false &&
+          data !== null &&
+          data.map((eachCategory, index) => {
+            return (
+              <Button
+                key={index}
+                eachCategory={eachCategory}
+                index={index}
+                setActiveIndex={setActiveIndex}
+                activeIndex={activeIndex}
+              />
+            );
+          })}
+      </ul>
     </nav>
   );
 }
