@@ -1,70 +1,28 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useContext } from "react";
+import { CategoriesContext } from "../context/CategoriesContext";
 import ProductCard from "./ProductCard";
 import Loading from "./Loading";
+import useFetch from "../useFetch";
 
-function Products({
-  category,
-  isLoadingFirst,
-  isLoadingSecond,
-  setIsLoadingFirst,
-  setIsLoadingSecond,
-}) {
-  const [productList, setProductList] = useState(null);
-  const [error, setError] = useState(null);
-
-  const getAllProducts = async () => {
-    setIsLoadingFirst(true);
-    try {
-      const response = await fetch("https://fakestoreapi.com/products");
-      if (!response.ok) throw "HTTP Error";
-      const data = await response.json();
-      setProductList(data);
-      setIsLoadingFirst(false);
-    } catch (error) {
-      setIsLoadingFirst(false);
-      setError(error);
-    }
-  };
-
-  useEffect(() => {
-    getAllProducts();
-  }, []);
-
-  const getProducts = async () => {
-    setIsLoadingSecond(true);
-
-    try {
-      const response = await fetch(
-        `https://fakestoreapi.com/products/category/${category}`
-      );
-      if (!response.ok) throw "HTTP Error";
-      const data = await response.json();
-      setProductList(data);
-      setIsLoadingSecond(false);
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, [category]);
-
-  if (productList == null) {
-    return null;
+function Products({}) {
+  const { category } = useContext(CategoriesContext);
+  let url;
+  console.log(category);
+  if (category === "all") {
+    url = "https://fakestoreapi.com/products";
+  } else {
+    url = `https://fakestoreapi.com/products/category/${category}`;
   }
-  if (error != null) {
-    return <div>{error.message}</div>;
-  }
+
+  const { data, isLoading, error } = useFetch(url);
 
   return (
     <ul className="products-container">
-      {(isLoadingFirst === true || isLoadingSecond === true) && <Loading />}
-
-      {isLoadingFirst === false &&
-        isLoadingSecond === false &&
-        productList.map((eachProduct, index) => {
+      {isLoading === true && <Loading />}
+      {error !== null && <div>{error}</div>}
+      {isLoading === false &&
+        data !== null &&
+        data.map((eachProduct, index) => {
           return <ProductCard key={index + 1} productInfo={eachProduct} />;
         })}
     </ul>

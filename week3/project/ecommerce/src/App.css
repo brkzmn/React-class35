@@ -16,6 +16,8 @@ h1 {
   color: #fff;
   margin-bottom: 15px;
   box-shadow: rgb(33 35 38 / 47%) 0px 17px 12px -4px;
+  text-align: center;
+  padding: 10px;
 }
 
 .navbar {
@@ -216,5 +218,10 @@ h1 {
 @media (min-width: 1000px) {
   .product-card {
     width: calc(33% - 48px);
+  }
+
+  .header h1 {
+    margin-left: 50px;
+    margin-top: 50px;
   }
 }

@@ -1,32 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import TopNavbar from "../components/TopNavbar";
 
-const HomePage = ({
-  category,
-  setCategory,
-  isLoadingFirst,
-  setIsLoadingFirst,
-  isLoadingSecond,
-  setIsLoadingSecond,
-}) => {
+const HomePage = ({}) => {
+  const [allCategories, setAllCategories] = useState([]);
+
   return (
     <div className="App">
       <TopNavbar header={"Products"} />
       <Navbar
-        category={category}
-        setCategory={setCategory}
-        isLoadingSecond={isLoadingSecond}
-        setIsLoadingSecond={setIsLoadingSecond}
+        allCategories={allCategories}
+        setAllCategories={setAllCategories}
       />
       <Products
-        category={category}
-        isLoadingFirst={isLoadingFirst}
-        setIsLoadingFirst={setIsLoadingFirst}
-        isLoadingSecond={isLoadingSecond}
-        setIsLoadingSecond={setIsLoadingSecond}
+        allCategories={allCategories}
+        setAllCategories={setAllCategories}
       />
     </div>
   );
