@@ -15,7 +15,6 @@ const ProductDetailsPage = () => {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
       if (!response.ok) {
-        console.log("inside if");
         throw new Error("HTTP error");
       }
       const data = await response.json();
